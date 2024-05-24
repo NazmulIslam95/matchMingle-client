@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/MatchMingle Logo.png";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   return (
     <section
       className="bg-cover bg-center flex justify-center items-center"
-      style={{ 
-        minHeight: '100vh'
+      style={{
+        minHeight: "100vh",
       }}
     >
       <div className="px-4 py-20 max-w-md w-full bg-transparent rounded-lg">
         <div className="flex flex-col items-center justify-center">
-        <a
-          href="/"
-          title="Kutty Home Page"
-          className="flex items-center justify-start"
-        >
-          <img src={logo} alt="Logo" className="w-52" />
-        </a>
-        <h1 className="mt-6 mb-4 text-xl font-light text-left text-gray-800">
-          Log in to your account
-        </h1>
+          <a
+            href="/"
+            title="Kutty Home Page"
+            className="flex items-center justify-start scale-100 duration-500 hover:scale-125"
+          >
+            <img src={logo} alt="Logo" className="w-52 " />
+          </a>
+          <h1 className="mt-6 mb-4 text-xl font-light text-left text-gray-800">
+            Log in to your account
+          </h1>
         </div>
         <form className="pb-1 space-y-4">
           <label className="block">
@@ -47,33 +48,32 @@ const Login = () => {
             />
           </label>
           <div className="flex items-center justify-between">
-            <label className="flex items-center">
-              <input
-                type="checkbox"
-                className="form-checkbox  border-[#924719] active:bg-[#924719] checked:bg-[#924719]"
-              />
-              <span className="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
-                Remember me
-              </span>
-            </label>
             <input
               type="submit"
-              className="btn btn-primary bg-[#924719]"
+              className="w-full btn btn-primary bg-[#924719] hover:bg-[#db9a71]"
               value="Login"
             />
           </div>
         </form>
+        {/* ----------- social button------------- */}
+
+        <button className="mt-4 flex items-center justify-center w-full btn btn-primary text-black bg-[#ffffff] hover:bg-[#d5b6a2]">
+          <FaGoogle className="text-black text-lg mr-4"></FaGoogle>
+          Log In With Google
+        </button>
+
+        {/* ----------- social button------------- */}
         <div className="my-6 space-y-2">
           <p className="text-xs text-gray-600">
             Do not have an account?
-            <Link to="/signup" className="text-[#924719] font-bold hover:text-black">
+            <Link
+              to="/signup"
+              className="text-[#924719] font-bold hover:text-black"
+            >
               Create an account
             </Link>
           </p>
-          <a
-            href="#"
-            className="block text-xs text-[#924719] hover:text-black"
-          >
+          <a href="#" className="block text-xs text-[#924719] hover:text-black">
             Forgot password?
           </a>
         </div>

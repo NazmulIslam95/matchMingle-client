@@ -18,7 +18,7 @@ const TopPremiumBiodata = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <SectionTitle heading="Top Premium"></SectionTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+      <div className="grid grid-cols-1 mt-24 md:grid-cols-2 lg:grid-cols-3 ">
         {topPremium6.map((topPremium) => (
           <BiodataCard key={topPremium._id} item={topPremium}></BiodataCard>
         ))}

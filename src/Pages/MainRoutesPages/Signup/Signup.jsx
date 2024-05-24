@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/MatchMingle Logo.png";
+import { FaGoogle } from "react-icons/fa";
 
 const Signup = () => {
   return (
@@ -13,7 +14,7 @@ const Signup = () => {
         <Link
           to="/"
           title="Kutty Home Page"
-          className="flex items-center justify-start sm:justify-center"
+          className="flex items-center justify-start sm:justify-center scale-100 duration-500 hover:scale-125"
         >
           <img src={logo} alt="" className="w-52" />
         </Link>
@@ -55,24 +56,29 @@ const Signup = () => {
                 required
               />
             </label>
-            <div className="flex flex-col items-start justify-between sm:items-center sm:flex-row">
-              <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
-                  Agree to Privacy Policy
-                </span>
-              </label>
+            <div className="flex items-center justify-between">
               <input
                 type="submit"
-                className="w-full mt-5 btn btn-primary sm:w-auto sm:mt-0"
-                value="Sign up"
+                className="w-full btn btn-primary bg-[#924719] hover:bg-[#db9a71]"
+                value="Signup"
               />
             </div>
           </form>
+          {/* ----------- social button------------- */}
+
+          <button className="mt-4 flex items-center justify-center w-full btn btn-primary text-black bg-[#ffffff] hover:bg-[#d5b6a2]">
+            <FaGoogle className="text-black text-lg mr-4"></FaGoogle>
+            Sign Up With Google
+          </button>
+
+          {/* ----------- social button------------- */}
         </div>
         <p className="my-0 text-xs font-medium text-center text-gray-700 sm:my-5">
           Already have an account?
-          <Link to="/login" className="text-purple-700 hover:text-purple-900">
+          <Link
+            to="/login"
+            className="text-[#924719] font-bold hover:text-black"
+          >
             Sign in
           </Link>
         </p>

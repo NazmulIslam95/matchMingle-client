@@ -36,31 +36,31 @@ const Navbar = () => {
       <li className="group flex  cursor-pointer flex-col">
         <NavLink style={navLinkStyles} to="/">
           Home
-          <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+          
         </NavLink>
       </li>
       <li className="group flex  cursor-pointer flex-col">
         <NavLink style={navLinkStyles} to="/biodatas">
           Biodatas
-          <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+         
         </NavLink>
       </li>
       <li className="group flex  cursor-pointer flex-col">
         <NavLink style={navLinkStyles} to="/aboutUs">
           About Us
-          <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+          
         </NavLink>
       </li>
       <li className="group flex  cursor-pointer flex-col">
         <NavLink style={navLinkStyles} to="/contactUs">
           Contact Us
-          <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+          
         </NavLink>
       </li>
       <li className="group flex  cursor-pointer flex-col">
         <NavLink style={navLinkStyles} to="/login">
           Login
-          <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-sky-500 transition-all duration-300 group-hover:w-full"></span>
+          
         </NavLink>
       </li>
     </>
