@@ -11,8 +11,8 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { app } from "./../firebase/firebase.config";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { app } from "./../../firebase/firebase.config";
+import useAxiosPublic from "./../../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -54,18 +54,18 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("Current user", currentUser);
-      if (currentUser) {
-        const userInfo = { email: currentUser.email };
-        axiosPublic.post("/jwt", userInfo).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
-            setLoading(false);
-          }
-        });
-      } else {
-        localStorage.removeItem("access-token");
-        setLoading(false);
-      }
+      // if (currentUser) {
+      //   const userInfo = { email: currentUser.email };
+      //   axiosPublic.post("/jwt", userInfo).then((res) => {
+      //     if (res.data.token) {
+      //       localStorage.setItem("access-token", res.data.token);
+      //       setLoading(false);
+      //     }
+      //   });
+      // } else {
+      //   localStorage.removeItem("access-token");
+      //   setLoading(false);
+      // }
     });
     return () => {
       return unSubscribe();

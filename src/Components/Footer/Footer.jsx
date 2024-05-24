@@ -5,7 +5,7 @@ import logo from "../../assets/MatchMingle Logo.png";
 const Footer = () => {
   return (
     <div>
-      <footer className=" bg-[#EAE8E4]">
+      <footer className="">
         <div className="container px-6 py-8 mx-auto">
           <div className="flex flex-col items-center text-center">
             <a href="#">
