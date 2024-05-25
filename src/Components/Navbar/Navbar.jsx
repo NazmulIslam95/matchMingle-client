@@ -105,7 +105,7 @@ const Navbar = () => {
         >
           <FaBars className="text-3xl"></FaBars>
           {dropDownState && (
-            <ul className="gap-4 bg-black bg-opacity-60 text-white px-6 py-8 absolute right-0 top-11 flex w-[200px] flex-col rounded-md   text-base ">
+            <ul className="gap-4 bg-black bg-opacity-60 px-6 py-8 absolute right-0 top-11 flex w-[200px] flex-col rounded-md   text-base ">
               {navItems}
             </ul>
           )}

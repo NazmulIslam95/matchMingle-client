@@ -102,7 +102,20 @@ const Signup = () => {
               <input
                 className="w-full px-4 py-2 rounded-md border border-[#924719]"
                 type="text"
-                placeholder="Your full name"
+                name="name"
+                placeholder="Your Full Name"
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="block mb-1 text-xs font-medium text-gray-700">
+               Your Photo URL
+              </span>
+              <input
+                className="w-full px-4 py-2 rounded-md border border-[#924719]"
+                type="text"
+                name="photoURL"
+                placeholder="Your Photo URL"
                 required
               />
             </label>
@@ -113,6 +126,7 @@ const Signup = () => {
               <input
                 className="w-full px-4 py-2 rounded-md border border-[#924719]"
                 type="email"
+                name="email"
                 placeholder="Ex. james@bond.com"
                 required
               />
@@ -124,6 +138,7 @@ const Signup = () => {
               <input
                 className="w-full px-4 py-2 rounded-md border border-[#924719]"
                 type="password"
+                name="password"
                 placeholder="••••••••"
                 required
               />
