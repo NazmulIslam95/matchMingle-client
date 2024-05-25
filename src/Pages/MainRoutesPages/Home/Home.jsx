@@ -7,7 +7,6 @@ import HowSiteWork from "../../../Components/HowSiteWork/HowSiteWork";
 import Statistics from "../../../Components/Statistics/Statistics";
 
 const Home = () => {
-  
   return (
     <div className="">
       <Navbar></Navbar>

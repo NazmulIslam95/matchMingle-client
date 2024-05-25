@@ -7,13 +7,19 @@ import { LiaMaleSolid } from "react-icons/lia";
 import { SlUserFemale } from "react-icons/sl";
 import BiodataCard from "../../../Components/BiodataCard/BiodataCard";
 import useBiodata from "../../../Hooks/useBiodata";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const BiodataDetails = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
   const [biodata] = useBiodata();
   const loadedBiodata = useLoaderData();
-  console.log(loadedBiodata);
+  //   console.log(loadedBiodata);
   const {
-    // biodataId,
+    biodataId,
     name,
     gender,
     image,
@@ -56,14 +62,40 @@ const BiodataDetails = () => {
       return <SlUserFemale className="text-lg" />;
     }
   };
+
+  const handleAddToFav = () => {
+    if (user && user.email) {
+      //   console.log(loadedBiodata);
+      const favBioInfo = {
+        name: name,
+        biodataId: biodataId,
+        permanentDivision: permanentDivision,
+        occupation: occupation,
+        userEmail: user.email,
+      };
+      axiosSecure.post("/favoriteBiodatas", favBioInfo).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `${name} Added To Your Favorite List`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+    }
+  };
+
   return (
     <div>
       <Navbar></Navbar>
       <div className="flex">
         <section className="w-full flex text-gray-600 body-font overflow-hidden">
-          <div className="container lg:-mr-24 px-6 lg:px-0 py-24 w-full">
-            <div className="lg:w-4/5 mx-auto flex flex-col-reverse lg:flex-row">
-              <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+          <div className="px-6 lg:px-0 py-24 w-full">
+            <div className="lg:w-4/5 mx-auto flex flex-col-reverse">
+              <div className="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                 <h1 className="uppercase text-gray-900 text-3xl title-font font-medium ">
                   {name}
                 </h1>
@@ -100,14 +132,22 @@ const BiodataDetails = () => {
                         {presentDivision}
                       </span>
                     </div>
-                    <h1 className="border border-b-violet-700">Contact Info</h1>
-                    <div className=" border-t border-gray-300 py-2">
-                      <p className="text-gray-500">Phone No.</p>
-                      <p className="ml-auto text-gray-900">{phone}</p>
-                    </div>
-                    <div className=" border-t border-gray-300 py-2">
-                      <p className="text-gray-500">Email</p>
-                      <p className="ml-auto text-gray-900">{email}</p>
+                    <div>
+                      <h1 className="border border-b-violet-700">
+                        Contact Info
+                      </h1>
+                      <div className="border-t border-gray-300 py-2">
+                        <p className="text-gray-500">Phone No.</p>
+                        <p className="ml-auto font-bold text-gray-900">
+                          {phone}
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-300 py-2">
+                        <p className="text-gray-500">Email</p>
+                        <p className="ml-auto font-bold text-gray-900">
+                          {email}
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div className="w-1/2">
@@ -157,7 +197,10 @@ const BiodataDetails = () => {
                     Request Contact
                   </button>
                   <Link>
-                    <button className="btn rounded-full w-10 h-10 bg-[#e0cab1] p-0 inline-flex items-center justify-center text-[#956631] duration-300 hover:scale-110 ml-4">
+                    <button
+                      onClick={handleAddToFav}
+                      className="btn rounded-full w-10 h-10 bg-[#e0cab1] p-0 inline-flex items-center justify-center text-[#956631] duration-300 hover:scale-110 ml-4"
+                    >
                       <FaHeart></FaHeart>
                     </button>
                   </Link>
@@ -165,13 +208,13 @@ const BiodataDetails = () => {
               </div>
               <img
                 alt="eCommerce"
-                className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                className="lg:w-full w-full h-1/4 object-cover object-center rounded"
                 src={getImageSrc()}
               />
             </div>
           </div>
-          <div className="hidden lg:block py-32 w-1/4">
-            <h1 className="ml-6 text-gray-900 text-3xl title-font font-medium uppercase">
+          <div className="hidden lg:block py-32 w-2/5">
+            <h1 className="ml-6 text-[#956631] text-3xl title-font font-medium font-serif uppercase">
               Similar Biodata
             </h1>
             <div>

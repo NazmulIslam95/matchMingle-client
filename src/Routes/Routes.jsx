@@ -5,6 +5,7 @@ import Login from "../Pages/MainRoutesPages/Login/Login";
 import Signup from "../Pages/MainRoutesPages/Signup/Signup";
 import Biodatas from "../Pages/MainRoutesPages/Biodatas/Biodatas";
 import BiodataDetails from "../Pages/MainRoutesPages/BiodataDetails/BiodataDetails";
+import PrivateRoutes from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -29,10 +30,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "biodatas/:id",
-        element: <BiodataDetails></BiodataDetails>,
+        element: (
+          <PrivateRoutes>
+            <BiodataDetails></BiodataDetails>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/biodatas/${params.id}`),
       },
     ],
+  },
+  {
+    path: "dashboard",
   },
 ]);

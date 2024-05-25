@@ -1,8 +1,5 @@
-import { useContext, useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { FaBars } from "react-icons/fa";
-
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/MatchMingle Logo.png";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
@@ -11,7 +8,23 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [dropDownState, setDropDownState] = useState(false);
+  const [navbarBg, setNavbarBg] = useState('bg-transparent');
   const dropDownMenuRef = useRef();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setNavbarBg('bg-black bg-opacity-20');
+      } else {
+        setNavbarBg('bg-transparent');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const closeDropDown = (e) => {
@@ -87,8 +100,9 @@ const Navbar = () => {
       )}
     </>
   );
+
   return (
-    <div className=" fixed z-20 w-full">
+    <div className={`fixed z-20 w-full transition-colors duration-300 ${navbarBg}`}>
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 text-black">
         <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-black transition-all duration-200 hover:scale-110">
           <Link to="/">
@@ -105,7 +119,7 @@ const Navbar = () => {
         >
           <FaBars className="text-3xl"></FaBars>
           {dropDownState && (
-            <ul className="gap-4 bg-black bg-opacity-60 px-6 py-8 absolute right-0 top-11 flex w-[200px] flex-col rounded-md   text-base ">
+            <ul className="gap-4 bg-black bg-opacity-60 px-6 py-8 absolute right-0 top-11 flex w-[200px] flex-col rounded-md text-base ">
               {navItems}
             </ul>
           )}
