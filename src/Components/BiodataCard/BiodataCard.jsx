@@ -39,22 +39,22 @@ const BiodataCard = ({ item }) => {
             alt="blog"
           />
           <div className="p-6">
-            <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
+            <h2 className="tracking-widest text-xs title-font font-medium text-[#956631] mb-1">
               Biodata ID: {biodataId}
             </h2>
-            <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
+            <h1 className="title-font text-lg font-medium text-[#674620] mb-3">
               {name}
             </h1>
             <div className="flex justify-between">
               <p className="flex items-center leading-relaxed mb-3 text-black font-bold">
-                <FaHome className="mr-2" />
-                <span className="capitalize text-gray-500 font-semibold">
+                <FaHome className="mr-2 text-[#956631]" />
+                <span className="capitalize text-[#956631] font-semibold">
                   {" "}
                   {permanentDivision}
                 </span>
               </p>
-              <p className="leading-relaxed mb-3 text-black font-bold">
-                <span className="capitalize text-gray-500 font-semibold">
+              <p className="leading-relaxed mb-3 text-b text-[#956631]lack font-bold">
+                <span className="capitalize text-[#956631] font-semibold">
                   {" "}
                   {occupation}
                 </span>
@@ -63,16 +63,16 @@ const BiodataCard = ({ item }) => {
             <div className="flex items-center flex-wrap ">
               <Link
                 to="/"
-                className="text-indigo-500 flex items-center md:mb-2 lg:mb-0"
+                className="text-[#956631] font-bold flex items-center md:mb-2 lg:mb-0 hover:scale-105 duration-200"
               >
                 View Profile
                 <FaArrowRight className="ml-2" />
               </Link>
-              <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+              <span className="text-[#956631] mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                 <FaCalendar className="mr-2" />
                 Age {age}
               </span>
-              <span className="text-gray-400 inline-flex items-center leading-none text-sm">
+              <span className="text-[#956631] inline-flex items-center leading-none text-sm">
                 {getGenderIcon()}
               </span>
             </div>

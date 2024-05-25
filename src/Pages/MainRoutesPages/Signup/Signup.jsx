@@ -1,8 +1,80 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/MatchMingle Logo.png";
 import { FaGoogle } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const Signup = () => {
+  const { createUser, updateUserProfile, googleSignIn } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+    console.log(name, email, password, photoURL);
+    createUser(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      updateUserProfile(name, photoURL)
+        .then(() => {
+          const userInfo = {
+            name: name,
+            email: form.email.value,
+            photoURL: form.photoURL.value,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "User Successfully Signed Up",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn().then((result) => {
+      console.log(result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+        photoURL: result.user?.photoURL,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Successfully Logged In",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      });
+    });
+  };
   return (
     <section
       style={{
@@ -22,7 +94,7 @@ const Signup = () => {
           <h1 className="mb-5 text-xl font-light text-left text-gray-800 sm:text-center">
             Sign up to our product today for free
           </h1>
-          <form className="pb-1 space-y-4">
+          <form onSubmit={handleSignup} className="pb-1 space-y-4">
             <label className="block">
               <span className="block mb-1 text-xs font-medium text-gray-700">
                 Name
@@ -66,7 +138,10 @@ const Signup = () => {
           </form>
           {/* ----------- social button------------- */}
 
-          <button className="mt-4 flex items-center justify-center w-full btn btn-primary text-black bg-[#ffffff] hover:bg-[#d5b6a2]">
+          <button
+            onClick={handleGoogleSignIn}
+            className="mt-4 flex items-center justify-center w-full btn btn-primary text-black bg-[#ffffff] hover:bg-[#d5b6a2]"
+          >
             <FaGoogle className="text-black text-lg mr-4"></FaGoogle>
             Sign Up With Google
           </button>
@@ -83,6 +158,9 @@ const Signup = () => {
           </Link>
         </p>
       </div>
+      <Helmet>
+        <title>MatchMingle | Signup</title>
+      </Helmet>
     </section>
   );
 };

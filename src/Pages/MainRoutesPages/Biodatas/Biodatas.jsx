@@ -28,7 +28,7 @@ const Biodatas = () => {
       <Navbar />
       <Banner />
       <SectionTitle heading={"all biodatas"} />
-      <div className="md:flex">
+      <div className="md:flex mt-24">
         <div className="lg:w-1/5 p-4 space-y-5">
           <h3 className="text-center text-xl font-semibold">Filters</h3>
           <div>

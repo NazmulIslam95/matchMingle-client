@@ -12,7 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "./../../firebase/firebase.config";
-import useAxiosPublic from "./../../Hooks/useAxiosPublic";
+// import useAxiosPublic from "./../../Hooks/useAxiosPublic"; //TODO: uncomment this when implement JWT
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -21,7 +21,7 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();  //TODO: uncomment this when implement JWT
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("Current user", currentUser);
+      setLoading(false);
       // if (currentUser) {
       //   const userInfo = { email: currentUser.email };
       //   axiosPublic.post("/jwt", userInfo).then((res) => {
@@ -70,7 +71,8 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubscribe();
     };
-  }, [axiosPublic]);
+    // }, [axiosPublic]); TODO: uncomment this when implement JWT
+  }, []); //TODO: comment this when implement JWT
 
   const authInfo = {
     user,
