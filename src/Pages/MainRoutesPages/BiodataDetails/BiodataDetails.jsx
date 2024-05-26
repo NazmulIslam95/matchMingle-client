@@ -76,7 +76,7 @@ const BiodataDetails = () => {
         userEmail: user.email,
       };
       axiosSecure.post("/favoriteBiodatas", favBioInfo).then((res) => {
-        console.log(res.data);
+        console.log(res);
         if (res.data.insertedId) {
           Swal.fire({
             position: "center",
@@ -193,13 +193,15 @@ const BiodataDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex mt-4">
+                <div className="flex justify-between mt-4">
                   <span className="capitalize flex gap-4 items-center title-font font-medium text-2xl text-gray-900">
                     {getGenderIcon()} {gender}
                   </span>
-                  <button className="flex ml-auto text-white bg-[#d9a76f] border-0 py-2 px-6 focus:outline-none duration-300 hover:bg-[#956631] rounded">
-                    Request Contact
-                  </button>
+                  {user && !isPremium && (
+                    <button className="flex ml-auto text-white bg-[#d9a76f] border-0 py-2 px-6 focus:outline-none duration-300 hover:bg-[#956631] rounded">
+                      Request Contact
+                    </button>
+                  )}
                   <Link>
                     <button
                       onClick={handleAddToFav}
@@ -217,7 +219,7 @@ const BiodataDetails = () => {
               />
             </div>
           </div>
-          <div className="hidden lg:block py-32 w-2/5">
+          <div className="hidden lg:block mt-24 w-2/5">
             <h1 className="ml-6 text-[#956631] text-3xl title-font font-medium font-serif uppercase">
               Similar Biodata
             </h1>

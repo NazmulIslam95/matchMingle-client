@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../../assets/MatchMingle Logo.png";
 import { FaGoogle } from "react-icons/fa";
@@ -23,10 +24,10 @@ const Signup = () => {
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
-    console.log(name, email, password, photoURL);
+    // console.log(name, email, password, photoURL);
     createUser(email, password).then((result) => {
       const user = result.user;
-      console.log(user);
+      // console.log(user);
       updateUserProfile(name, photoURL)
         .then(() => {
           const userInfo = {
@@ -49,21 +50,21 @@ const Signup = () => {
           navigate("/");
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
     });
   };
 
   const handleGoogleSignIn = () => {
     googleSignIn().then((result) => {
-      console.log(result.user);
+      // console.log(result.user);
       const userInfo = {
         email: result.user?.email,
         name: result.user?.displayName,
         photoURL: result.user?.photoURL,
       };
       axiosPublic.post("/users", userInfo).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         Swal.fire({
           position: "center",
           icon: "success",

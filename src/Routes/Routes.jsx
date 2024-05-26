@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/biodatas/${params.id}`),
+          fetch(`https://match-mingle-server-eta.vercel.app/biodatas/${params.id}`),
       },
     ],
   },
