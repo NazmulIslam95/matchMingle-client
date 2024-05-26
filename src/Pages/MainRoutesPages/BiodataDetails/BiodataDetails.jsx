@@ -73,7 +73,7 @@ const BiodataDetails = () => {
         biodataId: biodataId,
         permanentDivision: permanentDivision,
         occupation: occupation,
-        userEmail: user.email,
+        email: user.email,
       };
       axiosSecure.post("/favoriteBiodatas", favBioInfo).then((res) => {
         console.log(res);
