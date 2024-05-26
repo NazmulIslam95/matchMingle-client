@@ -6,10 +6,12 @@ import Signup from "../Pages/MainRoutesPages/Signup/Signup";
 import Biodatas from "../Pages/MainRoutesPages/Biodatas/Biodatas";
 import BiodataDetails from "../Pages/MainRoutesPages/BiodataDetails/BiodataDetails";
 import PrivateRoutes from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <ErrorPage></ErrorPage>,
     element: <Main></Main>,
     children: [
       {

@@ -5,8 +5,11 @@ import Banner from "../../../Components/Banner/Banner";
 import TopPremiumBiodata from "../../../Components/TopPremiumBiodata/TopPremiumBiodata";
 import HowSiteWork from "../../../Components/HowSiteWork/HowSiteWork";
 import Statistics from "../../../Components/Statistics/Statistics";
+// import useAdmin from "../../../Hooks/useAdmin";
 
 const Home = () => {
+  // const [isAdmin] = useAdmin();
+  // console.log(isAdmin);
   return (
     <div className="">
       <Navbar></Navbar>

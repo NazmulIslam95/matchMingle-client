@@ -11,8 +11,10 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import usePremium from "../../../Hooks/usePremium";
 
 const BiodataDetails = () => {
+  const [isPremium] = usePremium();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [biodata] = useBiodata();
@@ -132,23 +134,25 @@ const BiodataDetails = () => {
                         {presentDivision}
                       </span>
                     </div>
-                    <div>
-                      <h1 className="border border-b-violet-700">
-                        Contact Info
-                      </h1>
-                      <div className="border-t border-gray-300 py-2">
-                        <p className="text-gray-500">Phone No.</p>
-                        <p className="ml-auto font-bold text-gray-900">
-                          {phone}
-                        </p>
+                    {user && isPremium && (
+                      <div>
+                        <h1 className="border border-b-violet-700">
+                          Contact Info
+                        </h1>
+                        <div className="border-t border-gray-300 py-2">
+                          <p className="text-gray-500">Phone No.</p>
+                          <p className="ml-auto font-bold text-gray-900">
+                            {phone}
+                          </p>
+                        </div>
+                        <div className="border-t border-gray-300 py-2">
+                          <p className="text-gray-500">Email</p>
+                          <p className="ml-auto font-bold text-gray-900">
+                            {email}
+                          </p>
+                        </div>
                       </div>
-                      <div className="border-t border-gray-300 py-2">
-                        <p className="text-gray-500">Email</p>
-                        <p className="ml-auto font-bold text-gray-900">
-                          {email}
-                        </p>
-                      </div>
-                    </div>
+                    )}
                   </div>
                   <div className="w-1/2">
                     <div className="flex border-t border-gray-300 py-2">

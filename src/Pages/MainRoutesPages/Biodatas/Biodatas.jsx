@@ -6,9 +6,11 @@ import Footer from "../../../Components/Footer/Footer";
 import Navbar from "../../../Components/Navbar/Navbar";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useBiodata from "../../../Hooks/useBiodata";
+// import usePremium from "../../../Hooks/usePremium";
 
 const Biodatas = () => {
   const [biodata] = useBiodata();
+  // const [isPremium] = usePremium();
 
   // State for filters
   const [ageRange, setAgeRange] = useState([18, 60]);
@@ -36,12 +38,13 @@ const Biodatas = () => {
             <div className="flex gap-4">
               <input
                 type="range"
-                className="w-1/2"
+                className="w-1/2 appearance-none bg-black h-1 rounded-lg"
                 onChange={(e) => setAgeRange([+e.target.value, ageRange[1]])}
               />
+
               <input
                 type="range"
-                className="w-1/2"
+                className="w-1/2 appearance-none bg-black h-1 rounded-lg"
                 onChange={(e) => setAgeRange([ageRange[0], +e.target.value])}
               />
             </div>
@@ -49,26 +52,30 @@ const Biodatas = () => {
               {ageRange[0]} - {ageRange[1]}
             </div>
           </div>
-          <div className="flex items-center lg:block space-y-4">
+          <div className="flex items-center justify-center gap-4">
             <div>
-              <label className="text-lg font-semibold mr-2">Gender:</label>
               <select
                 value={gender}
                 className="px-4 py-2 rounded-md"
                 onChange={(e) => setGender(e.target.value)}
               >
+                <option disabled value="">
+                  Gender
+                </option>
                 <option value="">All</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
               </select>
             </div>
             <div>
-              <label className="text-lg font-semibold mr-2">Division:</label>
               <select
                 value={permanentDivision}
                 className="px-4 py-2 rounded-md"
                 onChange={(e) => setPermanentDivision(e.target.value)}
               >
+                <option disabled value="">
+                  Division
+                </option>
                 <option value="">All</option>
                 <option value="dhaka">Dhaka</option>
                 <option value="chattogram">Chattagram</option>

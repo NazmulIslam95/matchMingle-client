@@ -12,7 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "./../../firebase/firebase.config";
-// import useAxiosPublic from "./../../Hooks/useAxiosPublic"; //TODO: uncomment this when implement JWT
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -21,7 +21,7 @@ const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const axiosPublic = useAxiosPublic();  //TODO: uncomment this when implement JWT
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -55,18 +55,18 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log("Current user", currentUser);
       setLoading(false);
-      // if (currentUser) {
-      //   const userInfo = { email: currentUser.email };
-      //   axiosPublic.post("/jwt", userInfo).then((res) => {
-      //     if (res.data.token) {
-      //       localStorage.setItem("access-token", res.data.token);
-      //       setLoading(false);
-      //     }
-      //   });
-      // } else {
-      //   localStorage.removeItem("access-token");
-      //   setLoading(false);
-      // }
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => {
       return unSubscribe();
