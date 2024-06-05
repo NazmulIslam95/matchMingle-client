@@ -3,6 +3,7 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useFavBio from "../../../Hooks/useFavBio";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const MyFavoriteBiodatasPage = () => {
   const [favBio, refetch] = useFavBio();
@@ -63,19 +64,17 @@ const MyFavoriteBiodatasPage = () => {
               </thead>
               <tbody>
                 {favBio.map((item, index) => (
-                  <tr key={item._id}>
-                    <td className="px-4 py-3">{index + 1}</td>
+                  <tr className="text-base font-bold" key={item._id}>
+                    <td className="px-4 py-3">({index + 1})</td>
                     <td className="px-4 py-3">{item.name}</td>
                     <td className="px-4 py-3">{item.biodataId}</td>
-                    <td className="px-4 py-3 text-lg capitalize">
+                    <td className="px-4 py-3 capitalize">
                       {item.permanentDivision}
                     </td>
-                    <td className="px-4 py-3 text-lg capitalize">
-                      {item.occupation}
-                    </td>
+                    <td className="px-4 py-3 capitalize">{item.occupation}</td>
                     <td className="px-4 py-3 text-center">
                       <FaTrash
-                        className="text-red-700"
+                        className="hover:scale-125 cursor-pointer duration-300 text-red-700 text-lg"
                         onClick={() => {
                           handleDelete(item._id);
                         }}
@@ -88,6 +87,9 @@ const MyFavoriteBiodatasPage = () => {
           </div>
         </div>
       </section>
+      <Helmet>
+        <title>Dashboard | My Favorites</title>
+      </Helmet>
     </div>
   );
 };

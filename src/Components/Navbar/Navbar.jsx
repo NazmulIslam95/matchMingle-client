@@ -88,7 +88,7 @@ const Navbar = () => {
       {user ? (
         <>
           <li className="uppercase hover:scale-110 duration-300">
-            <NavLink className="" style={navLinkStyles} to="/dashboard">
+            <NavLink className="" style={navLinkStyles} to="/dashboard/editBiodata">
               DASHBOARD
             </NavLink>
           </li>
@@ -109,12 +109,12 @@ const Navbar = () => {
 
   return (
     <div
-      className={`fixed z-20 w-full transition-colors duration-300 ${navbarBg}`}
+      className={`lg:fixed z-20 w-full transition-colors duration-300 ${navbarBg}`}
     >
-      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2 text-black">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-4 lg:py-2 text-black">
         <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-black transition-all duration-200 hover:scale-110">
           <Link to="/">
-            <img src={logo} alt="" className="w-32" />
+            <img src={logo} alt="" className="w-20 lg:w-32" />
           </Link>
         </div>
         <ul className="hidden items-center justify-between gap-8 md:flex">

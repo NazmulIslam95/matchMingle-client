@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider/AuthProvider";
 
 
 export const axiosSecure = axios.create({
-  baseURL: "https://match-mingle-server-eta.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {

@@ -10,6 +10,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import EditBiodata from "../Pages/DashBoard/EditBiodata/EditBiodata";
 import MyFavoriteBiodatasPage from "../Pages/DashBoard/MyFavoriteBiodatasPage/MyFavoriteBiodatasPage";
+import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
 
 export const router = createBrowserRouter([
   {
@@ -41,9 +42,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://match-mingle-server-eta.vercel.app/biodatas/${params.id}`
-          ),
+          fetch(`http://localhost:5000/biodata/${params.id}`),
       },
     ],
   },
@@ -58,6 +57,12 @@ export const router = createBrowserRouter([
       {
         path: "favoritesBiodata",
         element: <MyFavoriteBiodatasPage></MyFavoriteBiodatasPage>,
+      },
+      {
+        path: "viewBiodata",
+        element: <ViewBiodata></ViewBiodata>,
+        //   loader: ({ params }) =>
+        //     fetch(`http://localhost:5000/biodatas/${params.email}`),
       },
     ],
   },

@@ -1,27 +1,35 @@
-import { Helmet } from "react-helmet";
-// import Footer from "../../../Components/Footer/Footer";
-import Navbar from "../../../Components/Navbar/Navbar";
-import { Link, useLoaderData } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 import { LiaMaleSolid } from "react-icons/lia";
 import { SlUserFemale } from "react-icons/sl";
-import BiodataCard from "../../../Components/BiodataCard/BiodataCard";
-import useBiodata from "../../../Hooks/useBiodata";
-import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import usePremium from "../../../Hooks/usePremium";
+import loadingGif from "../../../assets/loading-2.gif";
 
-const BiodataDetails = () => {
-  const [isPremium] = usePremium();
+import { useContext, useState } from "react";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+
+const ViewBiodata = () => {
+  const [biodata, setBiodata] = useState([]);
+  const { user, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
-  const [biodata] = useBiodata();
-  const loadedBiodata = useLoaderData();
-  //   console.log(loadedBiodata);
+
+  if (loading) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative flex items-center justify-center">
+          <img src={loadingGif} alt="" />
+        </div>
+      </div>
+    );
+  }
+
+  axiosSecure.get(`/biodataByEmail/${user.email}`).then((response) => {
+    const biodata = setBiodata(response.data);
+    console.log(biodata);
+    // Do something with the biodata
+  });
+
   const {
-    biodataId,
+    // biodataId,
     name,
     gender,
     image,
@@ -43,7 +51,7 @@ const BiodataDetails = () => {
     expectedPartnerHeight,
     expectedPartnerWeight,
     // createTime,
-  } = loadedBiodata;
+  } = biodata;
 
   const maleAvatar = "https://i.ibb.co/kh0ZF4p/male-cover.jpg";
   const femaleAvatar =
@@ -58,45 +66,20 @@ const BiodataDetails = () => {
   };
 
   const getGenderIcon = () => {
-    if (gender === "male") {
-      return <LiaMaleSolid className="text-2xl" />;
-    } else {
+    if (gender === "female") {
       return <SlUserFemale className="text-lg" />;
-    }
-  };
-
-  const handleAddToFav = () => {
-    if (user && user.email) {
-      //   console.log(loadedBiodata);
-      const favBioInfo = {
-        name: name,
-        biodataId: biodataId,
-        permanentDivision: permanentDivision,
-        occupation: occupation,
-        email: user.email,
-      };
-      axiosSecure.post("/favoriteBiodatas", favBioInfo).then((res) => {
-        console.log(res);
-        if (res.data.insertedId) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${name} Added To Your Favorite List`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    } else {
+      return <LiaMaleSolid className="text-2xl" />;
     }
   };
 
   return (
     <div>
-      <Navbar></Navbar>
+      <SectionTitle heading="View Biodata Page"></SectionTitle>
       <div className="flex">
-        <section className="lg:max-w-7xl px-8 mx-auto lg:flex text-gray-600 body-font overflow-hidden">
-          <div className="lg:py-24 lg:w-full">
-            <div className=" mx-auto flex flex-col-reverse">
+        <section className="w-full flex text-gray-600 body-font overflow-hidden">
+          <div className="px-6 lg:px-0 py-24 w-full">
+            <div className="lg:w-4/5 mx-auto flex flex-col-reverse">
               <div className="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
                 <h1 className="uppercase text-gray-900 text-lg lg:text-3xl title-font font-medium ">
                   {name}
@@ -134,25 +117,23 @@ const BiodataDetails = () => {
                         {presentDivision}
                       </span>
                     </div>
-                    {user && isPremium && (
-                      <div>
-                        <h1 className="border border-b-violet-700">
-                          Contact Info
-                        </h1>
-                        <div className="border-t border-gray-300 py-2">
-                          <p className="text-gray-500">Phone No.</p>
-                          <p className="ml-auto font-bold text-gray-900">
-                            {phone}
-                          </p>
-                        </div>
-                        <div className="border-t border-gray-300 py-2">
-                          <p className="text-gray-500">Email</p>
-                          <p className="ml-auto font-bold text-gray-900">
-                            {email}
-                          </p>
-                        </div>
+                    <div>
+                      <h1 className="border border-b-violet-700">
+                        Contact Info
+                      </h1>
+                      <div className="border-t border-gray-300 py-2">
+                        <p className="text-gray-500">Phone No.</p>
+                        <p className="ml-auto font-bold text-gray-900">
+                          {phone}
+                        </p>
                       </div>
-                    )}
+                      <div className="border-t border-gray-300 py-2">
+                        <p className="text-gray-500">Email</p>
+                        <p className="ml-auto font-bold text-gray-900">
+                          {email}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                   <div className="w-1/2">
                     <div className="flex border-t border-gray-300 py-2">
@@ -197,19 +178,6 @@ const BiodataDetails = () => {
                   <span className="capitalize flex gap-4 items-center title-font font-medium text-2xl text-gray-900">
                     {getGenderIcon()} {gender}
                   </span>
-                  {user && !isPremium && (
-                    <button className="flex ml-auto text-white bg-[#d9a76f] border-0 py-2 px-6 focus:outline-none duration-300 hover:bg-[#956631] rounded">
-                      Request Contact
-                    </button>
-                  )}
-                  <Link>
-                    <button
-                      onClick={handleAddToFav}
-                      className="btn rounded-full w-10 h-10 bg-[#e0cab1] p-0 inline-flex items-center justify-center text-[#956631] duration-300 hover:scale-110 ml-4"
-                    >
-                      <FaHeart></FaHeart>
-                    </button>
-                  </Link>
                 </div>
               </div>
               <img
@@ -218,30 +186,16 @@ const BiodataDetails = () => {
                 src={getImageSrc()}
               />
             </div>
-          </div>
-          <div className="lg:block mt-24 lg:w-2/5">
-            <h1 className="ml-6 text-[#956631] text-3xl title-font font-medium font-serif uppercase">
-              Similar Biodata
-            </h1>
-            <div>
-              {biodata
-                .filter((item) => item.gender === loadedBiodata.gender)
-                .map((filteredBiodata) => (
-                  <BiodataCard
-                    key={filteredBiodata._id}
-                    item={filteredBiodata}
-                  ></BiodataCard>
-                ))}
+            <div className="max-w-5xl mx-auto">
+              <button className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 transform bg-[#956640] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+                Make My Biodata Premium
+              </button>
             </div>
           </div>
         </section>
       </div>
-      <Helmet>
-        <title>MatchMingle | Biodata Details</title>
-      </Helmet>
-      {/* <Footer></Footer> */}
     </div>
   );
 };
 
-export default BiodataDetails;
+export default ViewBiodata;

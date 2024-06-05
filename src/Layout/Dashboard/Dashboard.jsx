@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 import logo from "../../assets/MatchMingle Logo.png";
 import logo2 from "../../assets/logo.png";
 import { FaEdit, FaEye } from "react-icons/fa";
-import { MdContacts } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
+import { MdContacts, MdFavorite } from "react-icons/md";
 import { IoIosLogOut } from "react-icons/io";
 import useFavBio from "../../Hooks/useFavBio";
+import coupleIcon from "../../assets/icons8-couple-100.png";
 
 const Dashboard = () => {
   const [favBio] = useFavBio();
@@ -41,19 +41,22 @@ const Dashboard = () => {
     <div
       style={{
         backgroundImage: `url('https://i.ibb.co/k2Tsg85/bg.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         minHeight: "100vh",
+        width: "100%",
       }}
-      className="bg-no-repeat bg-cover flex"
+      className="bg-no-repeat flex"
     >
-      <div className="border-r-2 border-[#d8752330] pt-4 lg:pt-10 md:w-1/12 lg:w-1/5 h-screen">
-        <div className="h-full p-3 space-y-2 w-full  text-black">
+      <div className="border-r-2 border-[#d8752330] pt-4 lg:pt-10 md:w-1/12 lg:w-1/5 ">
+        <div className="h-full p-3 space-y-2 w-full text-black">
           <div className="divide-y divide-gray-200">
             <Link to="/">
               <div className="hover:scale-110 duration-200 lg:flex items-center justify-center hidden">
-                <img src={logo} alt="" className="w-32 " />
+                <img src={logo} alt="" className="w-32" />
               </div>
-              <div className=" flex items-center justify-center lg:hidden">
-                <img src={logo2} alt="" className="w-32 " />
+              <div className="flex items-center justify-center lg:hidden">
+                <img src={logo2} alt="" className="w-32" />
               </div>
             </Link>
             <ul className="flex flex-col items-center lg:block pt-2 pb-4 space-y-4 ml-0 lg:ml-4 text-sm">
@@ -63,26 +66,24 @@ const Dashboard = () => {
                   to="/dashboard/editBiodata"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
-                  <FaEdit className="text-2xl text-[#956640]"></FaEdit>
-                  <span className="text-[#956640]  hidden lg:block">
-                    Edit Biodata
+                  <FaEdit className="text-2xl text-[#956640]" />
+                  <span className="text-[#956640] hidden lg:block">
+                    Create / Edit Biodata
                   </span>
                 </NavLink>
               </li>
-
               <li className="hover:scale-110 duration-200">
                 <NavLink
                   style={navLinkStyles}
                   to="/dashboard/viewBiodata"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
-                  <FaEye className="text-2xl text-[#956640]"></FaEye>
-                  <span className="text-[#956640]  hidden lg:block">
+                  <FaEye className="text-2xl text-[#956640]" />
+                  <span className="text-[#956640] hidden lg:block">
                     View Biodata
                   </span>
                 </NavLink>
               </li>
-
               <li className="hover:scale-110 duration-200">
                 <NavLink
                   style={navLinkStyles}
@@ -90,12 +91,11 @@ const Dashboard = () => {
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <MdContacts className="text-2xl text-[#956640]" />
-                  <span className="text-[#956640]  hidden lg:block">
+                  <span className="text-[#956640] hidden lg:block">
                     My Contact Request
                   </span>
                 </NavLink>
               </li>
-
               <li className="hover:scale-110 duration-200">
                 <NavLink
                   style={navLinkStyles}
@@ -108,16 +108,25 @@ const Dashboard = () => {
                   </span>
                 </NavLink>
               </li>
-
+              <li className="hover:scale-110 duration-200">
+                <NavLink
+                  style={navLinkStyles}
+                  to="/dashboard/gotMarried"
+                  className="flex items-center p-2 space-x-3 rounded-md"
+                >
+                  <img src={coupleIcon} className="w-7" alt="" />
+                  <span className="text-[#956640] hidden lg:block">
+                    Got Married
+                  </span>
+                </NavLink>
+              </li>
               <li className="hover:scale-110 duration-200">
                 <Link
                   onClick={handleLogOut}
                   className="flex items-center font-bold p-2 space-x-3"
                 >
-                  <IoIosLogOut className="text-2xl text-[#956640]" />
-                  <span className="text-[#956640] hidden lg:block">
-                    Log out
-                  </span>
+                  <IoIosLogOut className="text-2xl font-bold text-[#956640]" />
+                  <span className="text-[#956640] hidden lg:block">Log out</span>
                 </Link>
               </li>
             </ul>
@@ -138,8 +147,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="border-l-2 border-[#d8752330] w-4/5 mx-auto h-screen">
-        <Outlet></Outlet>
+      <div className="border-l-2 border-[#d8752330] w-4/5 mx-auto ">
+        <Outlet />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 [
     {
-        "biodataId": "4",
+        "biodataId": 4,
         "name": "Fatima Begum",
         "gender": "female",
         "image": "",
@@ -24,7 +24,7 @@
         "createTime": "2024-05-24T10:33:00Z"
     },
     {
-        "biodataId": "6",
+        "biodataId": 6,
         "name": "Shirin Akhter",
         "gender": "female",
         "image": "",
@@ -48,7 +48,7 @@
         "createTime": "2024-05-24T10:35:00Z"
     },
     {
-        "biodataId": "5",
+        "biodataId": 5,
         "name": "Rajib Roy",
         "gender": "male",
         "image": "",
@@ -72,7 +72,7 @@
         "createTime": "2024-05-24T10:34:00Z"
     },
     {
-        "biodataId": "7",
+        "biodataId": 7,
         "name": "Tanvir Ahmed",
         "gender": "male",
         "image": "",
@@ -96,7 +96,7 @@
         "createTime": "2024-05-24T10:36:00Z"
     },
     {
-        "biodataId": "8",
+        "biodataId": 8,
         "name": "Rumana Islam",
         "gender": "female",
         "image": "",
@@ -120,7 +120,7 @@
         "createTime": "2024-05-24T10:37:00Z"
     },
     {
-        "biodataId": "2",
+        "biodataId": 2,
         "name": "Anika Rahman",
         "gender": "female",
         "image": "",
@@ -144,7 +144,7 @@
         "createTime": "2024-05-24T10:31:00Z"
     },
     {
-        "biodataId": "3",
+        "biodataId": 3,
         "name": "Kamal Hossain",
         "gender": "male",
         "image": "https://static.theprint.in/wp-content/uploads/2023/07/Untitled-design-54.jpg",
@@ -168,7 +168,7 @@
         "createTime": "2024-05-24T10:32:00Z"
     },
     {
-        "biodataId": "9",
+        "biodataId": 9,
         "name": "Asif Hossain",
         "gender": "male",
         "image": "https://as1.ftcdn.net/v2/jpg/03/56/60/56/1000_F_356605658_nd9Z6dkTx9A1i6gpLOF4t9VRdNZSylQb.jpg",
@@ -192,7 +192,7 @@
         "createTime": "2024-05-24T10:38:00Z"
     },
     {
-        "biodataId": "10",
+        "biodataId": 10,
         "name": "Nasima Khatun",
         "gender": "female",
         "image": "",
@@ -216,7 +216,7 @@
         "createTime": "2024-05-24T10:39:00Z"
     },
     {
-        "biodataId": "1",
+        "biodataId": 1,
         "name": "Yousuf Tashfin",
         "gender": "male",
         "image": "https://i.ibb.co/Hq92dYz/boy-4821292-640.jpg",
@@ -240,7 +240,7 @@
         "createTime": "2024-05-24T10:30:00Z"
     },
     {
-        "biodataId": "11",
+        "biodataId": 11,
         "name": "Fatima Begum",
         "gender": "female",
         "image": "",
@@ -264,7 +264,7 @@
         "createTime": "2024-05-24T10:30:00Z"
     },
     {
-        "biodataId": "12",
+        "biodataId": 12,
         "name": "Rakib Hasan",
         "gender": "male",
         "image": "",
@@ -288,7 +288,7 @@
         "createTime": "2024-05-25T08:45:00Z"
     },
     {
-        "biodataId": "13",
+        "biodataId": 13,
         "name": "Sakib Ahmed",
         "gender": "male",
         "image": "",
@@ -312,7 +312,7 @@
         "createTime": "2024-05-26T14:20:00Z"
     },
     {
-        "biodataId": "14",
+        "biodataId": 14,
         "name": "Nadia Akhter",
         "gender": "female",
         "image": "",
@@ -336,7 +336,7 @@
         "createTime": "2024-05-27T11:10:00Z"
     },
     {
-        "biodataId": "15",
+        "biodataId": 15,
         "name": "Anamul Islam",
         "gender": "male",
         "image": "",
@@ -360,7 +360,7 @@
         "createTime": "2024-05-28T09:30:00Z"
     },
     {
-        "biodataId": "16",
+        "biodataId": 16,
         "name": "Nusrat Jahan",
         "gender": "female",
         "image": "",
@@ -384,7 +384,7 @@
         "createTime": "2024-05-29T15:00:00Z"
     },
     {
-        "biodataId": "17",
+        "biodataId": 17,
         "name": "Sadia Akhter",
         "gender": "female",
         "image": "",
@@ -408,7 +408,7 @@
         "createTime": "2024-05-30T12:45:00Z"
     },
     {
-        "biodataId": "18",
+        "biodataId": 18,
         "name": "Arif Hossain",
         "gender": "male",
         "image": "",
@@ -432,7 +432,7 @@
         "createTime": "2024-05-31T10:15:00Z"
     },
     {
-        "biodataId": "19",
+        "biodataId": 19,
         "name": "Tahmina Akter",
         "gender": "female",
         "image": "",
@@ -456,7 +456,7 @@
         "createTime": "2024-06-01T08:30:00Z"
     },
     {
-        "biodataId": "20",
+        "biodataId": 20,
         "name": "Nurul Islam",
         "gender": "male",
         "image": "",
