@@ -11,6 +11,11 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import EditBiodata from "../Pages/DashBoard/EditBiodata/EditBiodata";
 import MyFavoriteBiodatasPage from "../Pages/DashBoard/MyFavoriteBiodatasPage/MyFavoriteBiodatasPage";
 import ViewBiodata from "../Pages/DashBoard/ViewBiodata/ViewBiodata";
+import AdminRoutes from "./AdminRoutes";
+import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers/ManageUsers";
+import AdminDashboard from "../Pages/DashBoard/Admin/AdminDashboard/AdminDashboard";
+import ApprovedPremium from "../Pages/DashBoard/Admin/ApprovedPremium/ApprovedPremium";
+import ApprovedContactRequest from "../Pages/DashBoard/Admin/ApprovedContactRequest/ApprovedContactRequest";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +68,39 @@ export const router = createBrowserRouter([
         element: <ViewBiodata></ViewBiodata>,
         //   loader: ({ params }) =>
         //     fetch(`http://localhost:5000/biodatas/${params.email}`),
+      },
+      //------------------------------ Admin Routes -------------------------------//
+      {
+        path: "adminDashboard",
+        element: (
+          <AdminRoutes>
+            <AdminDashboard></AdminDashboard>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "manageUsers",
+        element: (
+          <AdminRoutes>
+            <ManageUsers></ManageUsers>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "approvedPremium",
+        element: (
+          <AdminRoutes>
+            <ApprovedPremium></ApprovedPremium>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "approvedContactRequest",
+        element: (
+          <AdminRoutes>
+            <ApprovedContactRequest></ApprovedContactRequest>
+          </AdminRoutes>
+        ),
       },
     ],
   },

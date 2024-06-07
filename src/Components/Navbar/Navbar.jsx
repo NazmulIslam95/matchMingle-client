@@ -3,12 +3,14 @@ import { FaBars } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/MatchMingle Logo.png";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [dropDownState, setDropDownState] = useState(false);
   const [navbarBg, setNavbarBg] = useState("bg-transparent");
   const dropDownMenuRef = useRef();
+  const [isAdmin] = useAdmin();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +47,6 @@ const Navbar = () => {
       borderBottom: isActive ? "2px solid #956631" : "none",
     };
   };
-
 
   const navItems = (
     <>
@@ -87,11 +88,28 @@ const Navbar = () => {
       </li>
       {user ? (
         <>
-          <li className="uppercase hover:scale-110 duration-300">
-            <NavLink className="" style={navLinkStyles} to="/dashboard/editBiodata">
-              DASHBOARD
-            </NavLink>
-          </li>
+          {user && isAdmin && (
+            <li className="uppercase hover:scale-110 duration-300">
+              <NavLink
+                className=""
+                style={navLinkStyles}
+                to="/dashboard/adminDashboard"
+              >
+                DASHBOARD
+              </NavLink>
+            </li>
+          )}
+          {user && !isAdmin && (
+            <li className="uppercase hover:scale-110 duration-300">
+              <NavLink
+                className=""
+                style={navLinkStyles}
+                to="/dashboard/viewBiodata"
+              >
+                DASHBOARD
+              </NavLink>
+            </li>
+          )}
         </>
       ) : (
         <li className="uppercase">
@@ -117,17 +135,17 @@ const Navbar = () => {
             <img src={logo} alt="" className="w-20 lg:w-32" />
           </Link>
         </div>
-        <ul className="hidden items-center justify-between gap-8 md:flex">
+        <ul className="hidden lg:flex items-center justify-between gap-8 ">
           {navItems}
         </ul>
         <div
           ref={dropDownMenuRef}
           onClick={() => setDropDownState(!dropDownState)}
-          className="relative flex transition-transform md:hidden"
+          className="relative flex transition-transform lg:hidden"
         >
           <FaBars className="text-3xl"></FaBars>
           {dropDownState && (
-            <ul className="gap-4 bg-black bg-opacity-60 px-6 py-8 absolute right-0 top-11 flex w-[200px] flex-col rounded-md text-base ">
+            <ul className="gap-4 bg-black bg-opacity-60 px-6 py-8 z-50 absolute right-0 top-11 flex w-[200px] flex-col rounded-md text-base ">
               {navItems}
             </ul>
           )}

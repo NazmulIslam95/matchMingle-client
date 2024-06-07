@@ -65,6 +65,8 @@ const BiodataDetails = () => {
     }
   };
 
+  
+
   const handleAddToFav = () => {
     if (user && user.email) {
       //   console.log(loadedBiodata);

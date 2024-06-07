@@ -103,7 +103,7 @@ const ViewBiodata = () => {
                     </div>
                     <div className="flex border-t border-gray-300 py-2">
                       <span className="text-gray-500">Race</span>
-                      <span className="ml-auto text-gray-900">{race}</span>
+                      <span className="ml-auto text-gray-900 capitalize">{race}</span>
                     </div>
                     <div className="flex border-t border-gray-300 py-2">
                       <span className="text-gray-500">Permanent Division</span>
@@ -187,7 +187,7 @@ const ViewBiodata = () => {
               />
             </div>
             <div className="max-w-5xl mx-auto">
-              <button className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 transform bg-[#956640] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+              <button className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 btn transform bg-[#956640] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
                 Make My Biodata Premium
               </button>
             </div>
