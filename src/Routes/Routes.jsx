@@ -16,6 +16,7 @@ import ManageUsers from "../Pages/DashBoard/Admin/ManageUsers/ManageUsers";
 import AdminDashboard from "../Pages/DashBoard/Admin/AdminDashboard/AdminDashboard";
 import ApprovedPremium from "../Pages/DashBoard/Admin/ApprovedPremium/ApprovedPremium";
 import ApprovedContactRequest from "../Pages/DashBoard/Admin/ApprovedContactRequest/ApprovedContactRequest";
+import MyContactReq from "../Pages/DashBoard/MyContactReq/MyContactReq";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
         element: <ViewBiodata></ViewBiodata>,
         //   loader: ({ params }) =>
         //     fetch(`http://localhost:5000/biodatas/${params.email}`),
+      },
+      {
+        path: "myContactReq",
+        element: <MyContactReq></MyContactReq>,
       },
       //------------------------------ Admin Routes -------------------------------//
       {

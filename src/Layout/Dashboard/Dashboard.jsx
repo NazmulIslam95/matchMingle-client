@@ -158,7 +158,7 @@ const Dashboard = () => {
                   <li className="hover:scale-110 duration-200">
                     <NavLink
                       style={navLinkStyles}
-                      to="/dashboard/MyContactRequest"
+                      to="/dashboard/myContactReq"
                       className="flex items-center p-2 space-x-3 rounded-md"
                     >
                       <MdContacts className="text-2xl text-[#956640]" />
