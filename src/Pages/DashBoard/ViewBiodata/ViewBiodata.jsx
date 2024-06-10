@@ -6,14 +6,12 @@ import { useContext, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
-import useRegUser from "../../../Hooks/useRegUser";
+import Swal from "sweetalert2";
 
 const ViewBiodata = () => {
   const [biodata, setBiodata] = useState([]);
   const { user, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const [regUsers] = useRegUser();
-  console.log(regUsers);
 
   if (loading) {
     return (
@@ -26,21 +24,18 @@ const ViewBiodata = () => {
   }
 
   axiosSecure.get(`/biodataByEmail/${user.email}`).then((response) => {
-    const biodata = setBiodata(response.data);
-    console.log(biodata);
+    setBiodata(response.data);
+    // console.log(biodata);
     // Do something with the biodata
   });
 
   const {
-    // biodataId,
     name,
     gender,
     image,
     permanentDivision,
     age,
     occupation,
-    // status,
-    // subscription,
     email,
     phone,
     dataOfBirth,
@@ -53,7 +48,6 @@ const ViewBiodata = () => {
     expectedPartnerAge,
     expectedPartnerHeight,
     expectedPartnerWeight,
-    // createTime,
   } = biodata;
 
   const maleAvatar = "https://i.ibb.co/kh0ZF4p/male-cover.jpg";
@@ -74,6 +68,31 @@ const ViewBiodata = () => {
     } else {
       return <LiaMaleSolid className="text-2xl" />;
     }
+  };
+
+  const handlePremiumReq = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Wanna Make A Request For Premium?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make It!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/pending/${biodata.email}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            // refetch();
+            Swal.fire({
+              title: "Requested!",
+              text: `${biodata.name} Your Request Is Submitted`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -192,7 +211,10 @@ const ViewBiodata = () => {
               />
             </div>
             <div className="max-w-5xl mx-auto">
-              <button className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 btn transform bg-[#956640] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+              <button
+                onClick={handlePremiumReq}
+                className="px-8 py-2.5 w-full leading-5 text-white transition-colors duration-300 btn transform bg-[#956640] rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              >
                 Make My Biodata Premium
               </button>
             </div>

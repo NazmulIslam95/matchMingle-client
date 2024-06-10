@@ -82,7 +82,7 @@ const ManageUsers = () => {
             <table className="table-auto w-full text-left whitespace-no-wrap">
               <thead className="text-center">
                 <tr>
-                  <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631] rounded-tl-md ">
+                  <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631] rounded-tl-lg  ">
                     SN
                   </th>
                   <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631]">
@@ -97,7 +97,7 @@ const ManageUsers = () => {
                   <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631]">
                     Role
                   </th>
-                  <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631] rounded-tr">
+                  <th className="px-4 text-white py-3 title-font tracking-wider font-medium text-sm bg-[#956631] rounded-tr-lg ">
                     Subscription
                   </th>
                 </tr>

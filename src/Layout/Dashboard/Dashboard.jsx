@@ -190,7 +190,7 @@ const Dashboard = () => {
                         Got Married
                       </span>
                     </NavLink>
-                  </li>
+                </li>
                   <li className="hover:scale-110 duration-200">
                     <Link
                       onClick={handleLogOut}
