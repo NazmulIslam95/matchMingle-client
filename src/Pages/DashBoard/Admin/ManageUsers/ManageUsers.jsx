@@ -110,7 +110,7 @@ const ManageUsers = () => {
                       <img
                         src={regUser.photoURL}
                         alt=""
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-12 h-12 rounded-xl object-cover"
                       />
                     </td>
                     <td className="px-4 py-3">{regUser.name}</td>
