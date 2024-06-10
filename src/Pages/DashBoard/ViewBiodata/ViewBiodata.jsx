@@ -6,11 +6,14 @@ import { useContext, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import useRegUser from "../../../Hooks/useRegUser";
 
 const ViewBiodata = () => {
   const [biodata, setBiodata] = useState([]);
   const { user, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const [regUsers] = useRegUser();
+  console.log(regUsers);
 
   if (loading) {
     return (
@@ -103,7 +106,9 @@ const ViewBiodata = () => {
                     </div>
                     <div className="flex border-t border-gray-300 py-2">
                       <span className="text-gray-500">Race</span>
-                      <span className="ml-auto text-gray-900 capitalize">{race}</span>
+                      <span className="ml-auto text-gray-900 capitalize">
+                        {race}
+                      </span>
                     </div>
                     <div className="flex border-t border-gray-300 py-2">
                       <span className="text-gray-500">Permanent Division</span>

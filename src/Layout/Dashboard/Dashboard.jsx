@@ -58,7 +58,7 @@ const Dashboard = () => {
                 <img src={logo} alt="" className="w-32" />
               </div>
               <div className="flex items-center justify-center lg:hidden">
-                <img src={logo2} alt="" className="w-32" />
+                <img src={logo2} alt="" className="w-8" />
               </div>
             </Link>
             <ul className="flex flex-col items-center lg:block mt-12 pt-2 pb-4 space-y-4 ml-0 lg:ml-4 text-sm">
